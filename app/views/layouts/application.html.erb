@@ -16,8 +16,12 @@
   <body>
     <%= render 'layouts/header' %>
     <div class="container">
+      <% flash.each do |message_type, message| %>
+        <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
+      <% end %>
       <%= yield %>
+      <%= render 'layouts/footer.html.erb' %>
+      <%= debug(params) if Rails.env.development? %>
     </div>
-    <%= render 'layouts/footer.html.erb' %>
   </body>
 </html>
